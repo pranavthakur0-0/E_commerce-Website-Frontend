@@ -1,0 +1,40 @@
+.nav_login_page{
+    z-index: 0;
+    height: fit-content;
+    width: 100vw;
+    position: relative !important;
+    background-color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & .lg_box{
+        padding-bottom: 5rem !important;
+    & .lg_header{
+        justify-content: center !important;
+        & h3{
+            font-size: 1.5rem;
+            font-weight: 500 !important;
+        }
+
+    }
+    & p{
+        padding-top: 0.7rem;
+        font-size: 0.9rem !important;
+    }
+    & .box_wrap{
+        & .sign_label{
+            font-size: 1rem !important;
+            padding-bottom: 0.2rem;
+        }
+        & .reg_log_links{
+            text-decoration: none !important;
+        }
+        & .in_button{
+            font-size: 1rem !important;
+        }
+    }
+    & .in_rem_for{
+        font-size: 1rem;
+    }
+}
+}

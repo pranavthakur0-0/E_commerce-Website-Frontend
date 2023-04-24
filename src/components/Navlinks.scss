@@ -1,0 +1,26 @@
+.navlink_header{
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    text-decoration: none !important;
+    &:link{
+        text-decoration: none !important;
+    }
+}
+
+.navlink_sublink {
+    text-decoration: none;
+  }
+
+  
+.navlink_sublinks{
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 400;
+    text-decoration: none;
+    &:hover{
+        text-decoration: underline !important;
+    }
+}

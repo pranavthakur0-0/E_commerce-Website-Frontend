@@ -1,0 +1,38 @@
+*,
+*::before,
+*::after {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: inherit;
+}
+:root {
+  --loading-grey: #ededed;
+  --background: rgba(0, 0, 0, 0.025);
+}
+
+body{
+    box-sizing: border-box;
+    font-size: 62.5%;
+    font-family: 'Urbanist', sans-serif;
+    width: 100vw;
+    max-width: 100%;
+    word-spacing: 0.03rem;
+    letter-spacing: 0.05rem;
+    background-color: rgba(0, 0, 0, 0.025);
+}
+
+ input[type=number]::-webkit-inner-spin-button, 
+ input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+.universal_link{
+  color: black;
+  text-decoration: none !important;
+  width: fit-content;
+}
+
+

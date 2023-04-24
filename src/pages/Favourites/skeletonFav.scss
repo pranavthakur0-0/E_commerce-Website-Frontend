@@ -1,0 +1,27 @@
+.skeleton_page_bag_animation{
+    background-color: var(--loading-grey);
+    background: linear-gradient(
+      100deg,
+      rgba(229, 229, 229, 0.3) 40%,
+      rgba(240, 240, 240, 0.7) 50%,
+      rgba(229, 229, 229, 0.3) 60%
+    ) var(--loading-grey);
+    background-size: 200% 100%;
+    background-position-x: 180%;
+    animation: 1s loading linear infinite;
+    border-radius: 0.3rem;
+  }
+  
+  @keyframes loading {
+    to {
+      background-position-x: -20%;
+    }
+  }
+
+.main_skeletonFav{
+    height: fit-content;
+    width: 18rem;
+    height: 30rem;
+    border-radius: 0.2rem;
+    @extend .skeleton_page_bag_animation;
+}

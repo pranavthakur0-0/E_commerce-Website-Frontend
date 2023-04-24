@@ -1,0 +1,38 @@
+.my_details_points {
+  height: fit-content;
+  transition: all 0.3s ease-in-out;
+
+  & #points_header {
+    font-size: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    & span {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  & .points_sub_points {
+    padding-top: 1.5rem;
+    padding-right: 0.4rem;
+    font-size: 0.9rem;
+    list-style: none;
+    & li {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      & .text {
+        flex: 1;
+        & h3 {
+          font-size: 0.9rem;
+        }
+        & p {
+          padding-bottom: 0.7rem;
+        }
+      }
+    }
+    & .sub_points_{
+        padding-top: 1.5rem;
+    }
+  }
+}

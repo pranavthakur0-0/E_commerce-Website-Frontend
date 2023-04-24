@@ -1,0 +1,66 @@
+.sld_cl{
+    height: 100vh;
+    width: 100vw;
+    max-width: 100%;
+    padding-top: 13vh;
+    .sld_cl_wrapper{
+        position: relative;
+        height: 100%;
+        max-width: 100%;
+        overflow: hidden;
+    .outer{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        .cl_items{
+            cursor: pointer;
+            height: 100%;
+            min-width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5rem;
+        }
+    }
+    .sld_bt_con{
+        position: relative;
+        margin: auto;
+        top: 45%;
+        min-width: 100%;
+        & .sd_bt_comb{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            background-color: transparent;
+            font-size: 3rem;
+            color: rgb(0, 0, 0);
+            border-radius: 50%;
+            background-color: rgba(0, 0, 0, 0.3);
+            font-weight: 200;
+            height: 4rem;
+            width: 4rem;
+            border: 0.7px solid white;
+        }
+        & .sd_bt_comb:hover{
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        & .sd_left{
+            position: absolute;
+            left: 2rem;
+            -moz-transform: scaleX(-1);
+            -webkit-transform: scaleX(-1);
+            -o-transform: scaleX(-1);
+            transform: scaleX(-1);
+            -ms-filter: fliph; /*IE*/
+            filter: fliph; /*IE*/
+        }
+        & .sd_right{
+            position: absolute;
+            right: 2rem;
+        }
+    }
+}
+}

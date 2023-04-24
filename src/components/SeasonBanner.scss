@@ -1,0 +1,19 @@
+.Season_main{
+    height: 80vh;
+    width: 100%;
+    max-width: 100%;
+    background-size: cover;
+    background-image: url(https://assets.awwwards.com/awards/submissions/2017/12/5a312aefe8a9c.jpg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    .text{
+        text-transform: uppercase;
+        font-size: 5rem;
+        color: white;
+        font-weight: 800;
+        text-shadow: 2px 7px 5px rgba(0,0,0,0.3), 
+        0px -4px 10px rgba(255,255,255,0.3);
+    }
+}

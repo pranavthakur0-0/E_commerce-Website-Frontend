@@ -1,0 +1,59 @@
+.sides{
+    margin-top: 5rem;
+    font-size: 2.5rem;
+    font-weight: 400;
+    padding: 0rem 7rem;
+    text-align: center;
+}
+.sd_main{
+    margin-top: 2rem;
+    padding: 0rem 7rem;
+    height: 30rem;
+    display: flex;
+    justify-content: space-around;
+    .side{
+        height: 100%;
+        width: 45%;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        .overlay{
+            transition: 0.25s ease-in-out;
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.15);
+        }
+        cursor: pointer;
+        &:hover .overlay{
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        button{
+            top: 50%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            cursor: pointer;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0);
+            color: white;
+            border: none;
+            padding: 0.9rem 1.5rem;
+            font-weight: 400;
+            transition: 0.25s ease-in-out;
+            border: 1px solid white;
+            &:hover{
+                background-color: rgb(255, 255, 255);
+                color: black;
+            }
+        }
+    }
+    .men{
+        background-image: url(../images/men.avif);
+    }
+    .women{
+
+        background-image: url(../images/women.avif);
+    }
+}

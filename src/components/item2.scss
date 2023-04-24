@@ -1,0 +1,81 @@
+.cl_it_one {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .one_back {
+      top: 0px;
+      left: 0px;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      .sld_it_one_1 {
+        height: 100%;
+        width: 50%;
+        -webkit-filter: grayscale(100%);
+        filter: grayscale(100%);
+        background-image: url(../images/sld_it_one.png);
+        background-size: cover;
+        background-position: center;
+        padding: 3rem 3rem 3rem 3rem;
+        transition: 0.4s ease-in-out;
+      }
+    }
+    .one_over {
+      position: relative;
+      height: 90%;
+      width: 80%;
+      display: flex;
+      .wrapper_1{
+          height: 100%;
+          width: 50%;
+          .year {
+              font-size: 2rem;
+              font-weight: 700;
+              display: flex;
+              flex-direction: column;
+              padding: 0.2rem;
+              & span {
+                height: 2rem;
+              }
+            }
+            .headline {
+              line-height: 2rem;
+              padding-top: 2rem;
+              font-size: 1.5rem;
+              font-weight: 500;
+            }
+            .text {
+              line-height: 7rem;
+              font-size: 8rem;
+              font-weight: 600;
+            }
+            .fa_style {
+              font-weight: 100;
+              font-size: 3rem;
+            }
+            .offer {
+              padding-top: 2rem;
+              font-size: 2rem;
+              display: flex;
+              gap: 2rem;
+              justify-content: flex-start;
+              align-items: center;
+              .sld_it_button {
+                padding: 0.7rem 1.2rem;
+                font-size: 1.4rem;
+                background-color: black;
+                border: none;
+                color: white;
+              }
+            }
+      }
+    }
+  }
+  

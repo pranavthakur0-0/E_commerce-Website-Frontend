@@ -1,0 +1,178 @@
+.fav_page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & .fav_con{
+        width: 1440px;
+        height: fit-content;
+        padding-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 7rem;
+        & .fav_con_page_msg{
+            flex: 1;
+            display: flex;
+            padding: 2rem 10rem;
+            & .fav_msg_con{
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 0.8rem;
+                font-weight: 600;
+            }
+        }
+        & h1{
+            padding-top: 1rem;
+            font-size: 2.5rem;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 3rem;
+        }
+        & .fav_pro_con{
+            height: fit-content;
+            flex: 1;
+            gap: 0.7rem;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            margin: auto;
+            margin-bottom: 5rem;
+            & .fav_pro_main{
+                width: fit-content;
+                & .fav_product{
+                    width: fit-content;
+                    & .fav_img_container{
+                        position: relative;
+                        & .fav_product_img{
+                            width: 17rem;
+                        }
+                        & .fav_product_delete_icon{
+                            background-color: white;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            height: 2rem;
+                            width: 2rem;
+                            padding: 0.55rem;
+                            position: absolute;
+                            bottom: 1rem;
+                            right: 1rem;
+                            border-radius: 50%;
+                            transition: 0.25s ease-in-out;
+                            cursor: pointer;
+                            &:hover{
+                                transform: scale(1.15);
+
+                            }
+                        }
+                    }
+                    & .fav_product_text{
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.2rem;
+                        & h3{
+                            padding-top: 0.2rem;
+                            font-weight: 500;
+                            font-size: 0.8rem;
+                        }
+                        & h4{
+                            font-weight: 500;
+                            font-size: 0.8rem;
+                        }
+                        & p{
+                            font-weight: 300;
+                            font-size: 0.7rem;
+                        }
+                        & .fav_size{
+                            padding-top: 1rem;
+                            position: relative;
+                            & .size_button{
+                                background-color: #fff;
+                                border-style: solid;
+                                border: #c2c2c2 1px solid;
+                                color: #222;
+                                height: 50px;
+                                width: 100%;
+                                padding: 15px;
+                                display: flex;
+                                justify-content: space-between;
+                                cursor: pointer;
+                                & .size_button{
+                                    border: #000000 1px solid;  
+                                }
+                            }
+                            & ul{
+                                position: absolute;
+                                width: 100%;
+                                list-style: none;
+                                border: #c2c2c2 1px solid;
+                                border-top: 0px;
+                                & li{
+                                    padding-left: 1rem;
+                                    height: 50px;
+                                    width: 100%;
+                                    padding: 15px;
+                                    display: flex;
+                                    align-items: center;
+                                    z-index: 1;
+                                    background-color: white;
+                                    &:hover{
+                                        background-color: #222222;
+                                        color: white;
+                                    }
+                                }
+                            }
+                            & .size_addtocart{
+                                margin-top: 0.5rem;
+                                height: 50px;
+                                width: 100%;
+                                padding: 15px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 0.2rem;
+                                background-color: #222222;
+                                border: 0px solid;
+                                color: white;
+                                cursor: pointer;
+                                & .add_icon{
+                                    height: 1rem;
+                                }
+                            }
+                            & .bagError{
+                                color: red;
+                                height: 1rem;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        & .fav_pro_empty{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            & .no_fav_items{
+                width: 25rem;
+                text-align: center;
+                & h3{
+                    font-size: 1rem;
+                }
+                & p{
+                    padding: 1rem;
+                    font-size: 0.75rem;
+                }
+                & .fav_browse_now{
+                    background-color: #222222;
+                    color: white;
+                    border: 1px;
+                    cursor: pointer;
+                    letter-spacing: 0.05rem;
+                    padding: 1rem 1.7rem;
+                }
+            }
+        }
+    }
+}

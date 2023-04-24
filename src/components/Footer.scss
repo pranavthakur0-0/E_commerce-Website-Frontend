@@ -1,0 +1,74 @@
+
+.ft_main{
+    position: relative;
+    height: fit-content;
+    width: 100vw;
+    max-width: 100%;
+    background-color: black;
+    padding: 5rem 5vw;
+    padding-top: 20vh;
+    color: white;
+    .link{
+        height: fit-content;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 10%;
+        padding-bottom: 12vh;
+       & ul{
+        text-decoration: none;
+        list-style: none;
+       & li{
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 200;
+            &:hover{
+                text-decoration: underline;
+                cursor: pointer;
+            }
+        }
+        }
+       & h2{
+            font-size: 1.3rem;
+            font-weight: 600;
+            padding-bottom: 1.7rem;
+        }
+        & p{
+            font-size: 1rem;
+            line-height: 1.5em;
+            font-weight: 200;
+        }
+       & button{
+            cursor: pointer;
+            margin-top: 2rem;
+            padding: 0.5rem 1rem 0.5rem 0rem;
+            font-size: 1.2rem;
+            color: white;
+            background-color: black;
+            border: none;
+            transition: 0.3s ease-in-out;
+            display: flex;
+            gap: 1rem;
+            &:hover{
+                transform: scale(1.1);
+            }
+        }
+    }
+    .logo{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        font-size: 1.4rem;
+        align-items: baseline;
+        span{
+            font-size: 3rem;
+        }
+    }
+    .india{
+        margin-top: 1rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        font-size: 1rem;
+    }
+}

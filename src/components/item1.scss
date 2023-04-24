@@ -1,0 +1,41 @@
+.cl_sd_one{
+  height: 100%;
+  width: 100%;
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url(../images/slide1.avif);
+  position: relative;
+  .dia_box{
+    height: fit-content;
+    width: 40%;
+    background-color: white;
+    position: absolute;
+    bottom: 2rem;
+    right: 10%;
+    padding: 3rem;
+    font-size: 3rem;
+    h3{
+      font-size: 1rem;
+      color: gray;
+      letter-spacing: -0.03rem;
+      text-transform: uppercase;
+    }
+    .text{
+      padding-top: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      .line{
+        height: 3px;
+        width: 4rem;
+        background-color: black;
+
+      }
+    }
+    p{
+      padding-top: 2rem;
+      font-size: 1.3rem;
+    }
+  }
+}

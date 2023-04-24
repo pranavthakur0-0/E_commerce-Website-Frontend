@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "head": "Blazer ",
+    "img": "https://lp2.hm.com/hmgoepprod?set=format%5Bwebp%5D%2Cquality%5B79%5D%2Csource%5B%2F55%2F2a%2F552aaf33d13efd93ed849529b3434f832d812eca.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url%5Bfile%3A%2Fproduct%2Fmain%5D"
+  },
+  {
+    "id": "2",
+    "head":"Shirts",
+    "img": "https://lp2.hm.com/hmgoepprod?set=format%5Bwebp%5D%2Cquality%5B79%5D%2Csource%5B%2F1e%2F32%2F1e32e37dff6b9baceca066f625cf92a83002f1ed.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url%5Bfile%3A%2Fproduct%2Fmain%5D"
+  },
+  {
+    "id": "3",
+    "head": "Jeans",
+    "img": "https://lp2.hm.com/hmgoepprod?set=format%5Bwebp%5D%2Cquality%5B79%5D%2Csource%5B%2F44%2Ffc%2F44fcb4a30fd534ac2e220b50537b7e855cc70443.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_jeans_relaxed%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url%5Bfile%3A%2Fproduct%2Fmain%5D"
+  },
+  {
+    "id": "4",
+    "head": "Sweatshirt",
+    "img": "https://lp2.hm.com/hmgoepprod?set=format%5Bwebp%5D%2Cquality%5B79%5D%2Csource%5B%2Fbe%2Ffa%2Fbefa5fad46e3d4f4fbee07d305e2849317e8e56e.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url%5Bfile%3A%2Fproduct%2Fmain%5D"
+  },
+  {
+    "id": "5",
+    "head": "Jackets",
+    "img": "https://lp2.hm.com/hmgoepprod?set=format%5Bwebp%5D%2Cquality%5B79%5D%2Csource%5B%2F06%2F7b%2F067bda40be7a32ffc6567681398dce790b705685.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5Bmen_jacketscoats_jackets%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url%5Bfile%3A%2Fproduct%2Fmain%5D"
+  }
+]

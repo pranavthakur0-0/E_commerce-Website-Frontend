@@ -1,0 +1,52 @@
+.hm_cat{
+    margin-top: 5rem;
+    padding: 5rem 7rem 5rem 7rem;
+    height: fit-content;
+    width: 100%;
+    background-color: black;
+    color: white !important;
+
+    h1{
+        font-size: 2rem;
+        font-weight: 400;
+    }
+    .hm_cat_wrap{
+        display: flex;
+        justify-content: space-around;
+        gap: 2rem;
+        .hm_item{
+            padding-top: 3vh;
+            height: 23rem;
+            cursor: pointer;
+            min-width: 10rem;
+            width: 15rem;
+            display: flex;
+            justify-content: center;
+            position: relative;
+            flex-direction: column;
+            .title{
+           
+                display: flex;
+                justify-content: center;
+                font-size: 1rem;
+                font-weight: 300;
+                width: fit-content;
+                color: white;
+                padding: 0.4rem 0rem;
+                align-items: center;
+            }
+            .img{
+                height: 100%;
+                width: 100%;
+                background-size: 15rem;
+                background-repeat: no-repeat;
+                background-position: center;
+                transition: 0.25s ease-in-out;
+            }
+            .img:hover{
+                background-size: 15.7rem;
+            }
+        }
+    }
+
+}

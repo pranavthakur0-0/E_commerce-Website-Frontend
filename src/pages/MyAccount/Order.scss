@@ -1,0 +1,45 @@
+.order_con{
+    display: flex;
+    flex: 1;
+    padding: 2rem;
+   & .options{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        font-size: 0.9rem;
+        padding: 1rem;
+        cursor: pointer;
+        border-bottom: 1.5px solid rgb(194, 194, 194);
+        color: gray;
+    }
+    & .selected-option{
+        color: black;
+        font-weight: 600;
+        border-bottom: 1.5px solid rgb(0, 0, 0);
+    }
+}
+.order_selected{
+    display: flex;
+    flex: 1;
+    padding: 2rem;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    gap: 0.3rem;
+    p{
+        font-size: 0.9rem;
+    }
+    & .online_order_button{
+        margin-top: 1rem;
+        padding: 1rem 2rem;
+        cursor: pointer;
+        width: fit-content;
+        background-color: white;
+        border: 2px solid black;
+        transition: background-color 0.3s ease-in-out;
+        &:hover{
+            background-color: black;
+            color: white;
+        }
+    }
+}
