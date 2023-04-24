@@ -19,7 +19,7 @@ export default function Product(){
     const arr = [1,2,3,4,5,6];
     const [index,setindex]  = useState(0);
     const [bagError, setbagError] = useState();
-    const [getrecommended, setgetrecommended] = useState();
+    // const [getrecommended, setgetrecommended] = useState();
 
 
       async function addToFav(id){
@@ -80,19 +80,19 @@ export default function Product(){
         }catch(err){
         }
       }
-      const Recommended = async () => {
-          try {
-            const response = await axios.get(`http://localhost:4000/api/server/products/${selected.category}`);
-            setgetrecommended(response.data);
-          } catch (err) {
-            console.log(err);
-          }
-      }
+      // const Recommended = async () => {
+      //     try {
+      //       const response = await axios.get(`http://localhost:4000/api/server/products/${selected.category}`);
+      //       setgetrecommended(response.data);
+      //     } catch (err) {
+      //       console.log(err);
+      //     }
+      // }
       
       useEffect(()=>{
         if (selected && selected.category) { 
           fetchSimilarProduct();
-          Recommended();
+          // Recommended();
         }
                // eslint-disable-next-line
       },[selected])
