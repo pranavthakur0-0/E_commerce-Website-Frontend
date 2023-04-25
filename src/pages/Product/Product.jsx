@@ -27,7 +27,7 @@ export default function Product(){
         const headers = { [cookiehead]: cookie };
         if(headers && cookie && cookiehead){
             try{
-              const data = await axios.post(`http://localhost:4000/api/server/fav_products`,{ItemId},{headers});
+              const data = await axios.post(`${process.env.REACT_APP_SERVER_URL}/fav_products`,{ItemId},{headers});
               if(data){
                 setfav(data.data.fav);
               }
@@ -48,7 +48,7 @@ export default function Product(){
 
     const fetchProduct = async ()=>{
         try{
-            const product = await axios.get(`http://localhost:4000/api/server/getsingle/product/${productId}`);
+            const product = await axios.get(`${process.env.REACT_APP_SERVER_URL}/getsingle/product/${productId}`);
             if(product){
                 setselected(product.data[0])
             }
@@ -75,7 +75,7 @@ export default function Product(){
 
       const fetchSimilarProduct = async()=>{
         try{
-            const matchingProduct =  await axios.get(`http://localhost:4000/api/server/admin/products/${selected.name}`)
+            const matchingProduct =  await axios.get(`${process.env.REACT_APP_SERVER_URL}/admin/products/${selected.name}`)
             setmatchingProduct(matchingProduct.data);
         }catch(err){
         }
@@ -136,7 +136,7 @@ export default function Product(){
               const productId = selected._id;
               if(headers && cookie && cookiehead){
               try{
-                const data = await axios.post('http://localhost:4000/api/server/bag_item',{size, productId},{headers});
+                const data = await axios.post(`${process.env.REACT_APP_SERVER_URL}/bag_item`,{size, productId},{headers});
                 if(data){
                   setsize("Select Size");
                   setgetbagcount(cur=>!cur);

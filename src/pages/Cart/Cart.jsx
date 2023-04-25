@@ -17,7 +17,7 @@ export default function Cart(){
             const headers = { [cookiehead]: cookie };
             if(headers && cookie && cookiehead){
             try{
-                const data = await axios.get("http://localhost:4000/api/server/bag_item",{headers});
+                const data = await axios.get(`${process.env.REACT_APP_SERVER_URL}/bag_item`,{headers});
                 if(data){
                     setcartdata(data.data);
                 }
@@ -162,7 +162,7 @@ function Product({item, index, props}){
         const headers = { [cookiehead]: cookie };
         if(headers && cookie && cookiehead){
         try{
-            const data = await axios.delete(`http://localhost:4000/api/server/bag_item/${productId}/${size}`,{headers});
+            const data = await axios.delete(`${process.env.REACT_APP_SERVER_URL}/bag_item/${productId}/${size}`,{headers});
             if(data.status === 200){
                 setgetbagcount(cur=>!cur);
                 const filteredBagItems = cartdata.filter(product => product._id !== item.id && product.size !== item.size);
@@ -178,7 +178,7 @@ function Product({item, index, props}){
               const headers = { [cookiehead]: cookie };
               if(headers && cookie && cookiehead){
                   try{
-                    const data = await axios.post(`http://localhost:4000/api/server/fav_products`,{ItemId},{headers});
+                    const data = await axios.post(`${process.env.REACT_APP_SERVER_URL}/fav_products`,{ItemId},{headers});
                     if(data){
                       setfav(data.data.fav);
                       DeleteItem();

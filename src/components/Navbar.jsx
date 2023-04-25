@@ -100,7 +100,7 @@ export default function Navbar()
          {
           const tempId = cookies.Wedesgin_tempID;
           try{
-            const data = await axios.post("http://localhost:4000/api/server/login", {info,  tempId},{withCredentials : true,}); 
+            const data = await axios.post(`${process.env.REACT_APP_SERVER_URL}/login`, {info,  tempId},{withCredentials : true,}); 
             if(data.status===200)
             {
               if (cookies['Wedesgin_tempID']) {
@@ -218,7 +218,7 @@ export default function Navbar()
        async function memberapi()
        {
         try{
-          const data = await axios.post("http://localhost:4000/api/server/register", info);  
+          const data = await axios.post(`${process.env.REACT_APP_SERVER_URL}/register`, info);  
           if(data.data.status)
           {
            setlogin('');

@@ -18,7 +18,6 @@ import Product from './pages/Product/Product';
 import Cart  from './pages/Cart/Cart.jsx'
 
 function App() {
-
   const [loggedIn, setloggedIn] = useState(false);
   const [cookies] = useCookies(['Wedesgin_loggedIn_permanent','Wedesgin_tempID']);
   const [navHeight, setnavHeight] = useState(0);
@@ -36,7 +35,7 @@ function App() {
 
   const getTempId = async() =>{
     try {
-      const response = await axios.get('http://localhost:4000/api/server/getTempId');
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/getTempId`);
       const data = response.data.token;
       if(data){
         setCookiehead('temp-id');
@@ -72,7 +71,7 @@ function App() {
       const headers = { [cookiehead]: cookie };
       if(headers && cookie && cookiehead){
             try{
-              const data = await axios.get(`http://localhost:4000/api/server/bag_item/count`,{ headers });
+              const data = await axios.get(`${process.env.REACT_APP_SERVER_URL}/bag_item/count`,{ headers });
               if(data){
                 setbagcount(data.data.count);
               }
@@ -91,7 +90,7 @@ function App() {
     async function verifyUser () {
       if (cookies.Wedesgin_loggedIn_permanent) {
         try {
-          const data = await axios.get('http://localhost:4000/api/server/cookie', {
+          const data = await axios.get(`${process.env.REACT_APP_SERVER_URL}/cookie`, {
             withCredentials: true, // This will send the cookie with the request
             headers: {
               'X-CSRF-Token': cookies.Wedesgin_loggedIn_permanent // Use the cookie name as the key to access its value
@@ -111,7 +110,7 @@ function App() {
   useEffect(()=>{
     async function getAllLinks(){
       try{
-      const Linklist = await axios.get(`http://localhost:4000/api/server/getLinks/all`);
+      const Linklist = await axios.get(`${process.env.REACT_APP_SERVER_URL}/getLinks/all`);
       if (Linklist) {
           setlink(Linklist.data.links);
       }}
@@ -122,7 +121,7 @@ function App() {
   getAllLinks();
   async function getColor(){
     try{
-      const response = await axios.get('http://localhost:4000/api/server/getcolor');
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/getcolor`);
       if(response){
         setcolorArr(response.data.colorArray);
       }

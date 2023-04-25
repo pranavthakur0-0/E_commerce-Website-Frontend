@@ -18,7 +18,7 @@ export default function Favourites(){
  
             if(fav){
                 try{
-                    const product = await axios.post(`http://localhost:4000/api/server/fav_products/all`,{fav});
+                    const product = await axios.post(`${process.env.REACT_APP_SERVER_URL}/fav_products/all`,{fav});
                     if(product){
                         setfavItems(product.data.Allproduct);
                     }
@@ -36,7 +36,7 @@ export default function Favourites(){
       const headers = { [cookiehead]: cookie };
       if(headers && cookie && cookiehead){
         try {
-          const data = await axios.get(`http://localhost:4000/api/server/fav_products`, { headers });
+          const data = await axios.get(`${process.env.REACT_APP_SERVER_URL}/fav_products`, { headers });
           console.log(data);
           if (data.data.fav.length!==0) {
                 setfav(data.data.fav);
@@ -124,7 +124,7 @@ function Product(props)
         const headers = { [cookiehead]: cookie };
         if(headers && cookie && cookiehead){
         try{
-            const data =  await axios.delete(`http://localhost:4000/api/server/fav_products/${productId}`,{ headers });
+            const data =  await axios.delete(`${process.env.REACT_APP_SERVER_URL}/fav_products/${productId}`,{ headers });
             if(data){
                 getFav()
             }
@@ -140,7 +140,7 @@ function Product(props)
           console.log(headers);
           if(headers && cookie && cookiehead){
             try {
-              const data = await axios.get(`http://localhost:4000/api/server/fav_products`, { headers });
+              const data = await axios.get(`${process.env.REACT_APP_SERVER_URL}/fav_products`, { headers });
               if (data) {
                 console.log(data);
                 setfav(data.data.fav);
@@ -161,7 +161,7 @@ function Product(props)
                    const productId = item._id;
                    if(headers && cookie && cookiehead){
                    try{
-                     const data = await axios.post('http://localhost:4000/api/server/bag_item',{size, productId},{headers});
+                     const data = await axios.post(`${process.env.REACT_APP_SERVER_URL}/bag_item`,{size, productId},{headers});
                      if(data){
                        setsize("Select Size");
                        setgetbagcount(cur=>!cur);

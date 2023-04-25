@@ -15,16 +15,20 @@ export default function UniversalComponent() {
   const [sorttoggle, setsorttoggle] =  useState(false);
   const [sort, setsort] = useState('{"_id": -1}');
   const [showcolor, setshowcolor] = useState(false);
-  const [color, setcolor] = useState();
+  const [color, setcolor] = useState([]);
   const [img,setimg] = useState('product');
   const [totalProducts, settotalProducts] = useState();
   const [colsize, setcolsize] = useState(true);
+  const [total, settotal] = useState();
+  const [limit, setlimit] = useState(5);
+  const [current, setcurrent] = useState(2);
+
 
   
   useEffect(() => {
     const fetchLinks = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/server/getLinks/${gender}/`, {withCredentials : true,});
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/getLinks/${gender}/`, {withCredentials : true,});
         if (response) {
           setsidelinks(prevLinks => response.data.links);
         }
@@ -40,21 +44,21 @@ export default function UniversalComponent() {
   useEffect(()=>{
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(`http://localhost:4000/api/server/admin/products/${gender}/${headerlink}/${item}?sort=${sort}&color=${color}`);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/admin/products/${gender}/${headerlink}/${item}?sort=${sort}&color=${color}&limit=${limit}`);
         if (response) {
+          setwait(true);
           setproducts(response.data.products);
           settotalProducts(response.data.totalProducts);
-          setwait(true);
+          settotal(response.data.total);
         }
       } catch (err) {
         console.log(err);
       }
     };
     fetchProducts();
-  },[gender, item, headerlink, sort, color])
+  },[gender, item, headerlink, sort, color, limit])
 
   useEffect(()=>{
-
     const timeout = setTimeout(()=>{
         if(wait){
             setisLoading(true);
@@ -62,7 +66,7 @@ export default function UniversalComponent() {
     },800);
     return ()=>clearTimeout(timeout);
     // eslint-disable-next-line
-},[products,isLoading])
+},[products,isLoading, setproducts])
 
 function hidedropdown() {
   if (sorttoggle) {
@@ -111,8 +115,18 @@ useEffect(()=>{
                         <button onClick={e=>setshowcolor(true)} className="color_options">COLOR <BsChevronDown className={showcolor ? "down_icon" : "none"} /></button>
                         <ul className="color_list"  style={showcolor ? {display : "flex"} : {display : "none"}} >
                           {colorArr &&colorArr.length !==0 ? colorArr.map((item,index)=>{
-                            return (<li onClick={e=>{ setcolor(encodeURIComponent(JSON.stringify(item.colorCode )));setshowcolor(cur=>!cur)}} key={index}><div className="color_box" style={{backgroundColor:`${item.colorCode}`}} ></div>{item.color}</li>)
-                                                                //one thing when passing anything that contains # does not pass so we have to use encodeURIcomponent to pass the value containing hash
+                              const encodedColorCode = encodeURIComponent(JSON.stringify(item.colorCode));
+                              const isColorCodeSelected = color.includes(encodedColorCode);
+                               //one thing when passing anything that contains # does not pass so we have to use encodeURIcomponent to pass the value containing hash
+                            return (<li 
+                              style={{ backgroundColor: isColorCodeSelected ? '#dedede' : 'white' }}
+                              onClick={e => {
+                                setcolor(oldArr => {
+                                  const unique = new Set(oldArr);
+                                  unique.has(encodedColorCode) ? unique.delete(encodedColorCode) : unique.add(encodedColorCode);
+                                  return Array.from(unique);
+                                });setshowcolor(cur=>!cur)}} key={index}><div className="color_box" style={{backgroundColor:`${item.colorCode}`}} ></div>{item.color}</li>)
+
                           }): ""}
                         </ul>
                       </div>
@@ -120,7 +134,7 @@ useEffect(()=>{
                       <div className="query_items_two">
                       <div className="model_product_" style={img ==="model" ? {textDecoration : "underline"}: {textDecoration : "none"}} onClick={e=>setimg("model")}>Model</div>
                       <div className="model_product_" style={img ==="product" ? {textDecoration : "underline"}: {textDecoration : "none"}} onClick={e=>setimg("product")}>Product</div>
-                      <div className="total_item_found">{totalProducts} Items</div>
+                      <div className="total_item_found">{total} Items</div>
                       <div onClick={e=>setcolsize(false)} style={colsize ? {backgroundColor:"transparent"}:{backgroundColor:"black"}} className="col_size_sin"></div>
                       <div onClick={e=>setcolsize(true)} className="col_size_mul">
                         <div className="min_row">
@@ -137,8 +151,8 @@ useEffect(()=>{
 
                   <div className="uni_item" style={colsize ? {gridTemplateColumns: 'repeat(5, 1fr)'} : {gridTemplateColumns: 'repeat(4, 1fr)'}}>
                         {isLoading ? (
-                          products && products.length!==0 ? (
-                            products.map((item, index) => {
+                          products && products.length!==0 ? (<>
+                           { products.map((item, index) => {
                               const isFav = fav && fav.includes(item._id);
                               return (
                                 <ProductItem
@@ -149,8 +163,9 @@ useEffect(()=>{
                                   img={img}
                                 />
                               );
-                            })
-                          ) : (
+                            })}
+ 
+                         </> ) : (
                             "No Items Present At the Moment"
                           )
                         ) : (
@@ -159,6 +174,10 @@ useEffect(()=>{
             </div>
             </div>
           </div>
+          {isLoading ? <div className="next_prev_button">
+            Showing {totalProducts} of {total} Items
+                        <button className="load_more_button" onClick={e => { setcurrent(cur=>cur+1); setlimit(limit *current); setisLoading(false);}}>Load more products</button>
+                  </div> : ""}
         </div>
       </div>
     </>
@@ -192,7 +211,7 @@ function ProductItem (props){
   const headers = { [cookiehead]: cookie };
   if(headers && cookie && cookiehead){
       try{
-        const data = await axios.post(`http://localhost:4000/api/server/fav_products`,{ItemId},{headers});
+        const data = await axios.post(`${process.env.REACT_APP_SERVER_URL}/fav_products`,{ItemId},{headers});
         if(data){
           setfav(data.data.fav);
         }
