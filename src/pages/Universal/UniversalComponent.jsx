@@ -134,7 +134,7 @@ useEffect(()=>{
                       <div className="query_items_two">
                       <div className="model_product_" style={img ==="model" ? {textDecoration : "underline"}: {textDecoration : "none"}} onClick={e=>setimg("model")}>Model</div>
                       <div className="model_product_" style={img ==="product" ? {textDecoration : "underline"}: {textDecoration : "none"}} onClick={e=>setimg("product")}>Product</div>
-                      <div className="total_item_found">{total} Items</div>
+                      <div className="total_item_found">{totalProducts > 0 ? total : 0} Items</div>
                       <div onClick={e=>setcolsize(false)} style={colsize ? {backgroundColor:"transparent"}:{backgroundColor:"black"}} className="col_size_sin"></div>
                       <div onClick={e=>setcolsize(true)} className="col_size_mul">
                         <div className="min_row">
@@ -149,7 +149,8 @@ useEffect(()=>{
                       </div>
                   </div>
 
-                  <div className="uni_item" style={colsize ? {gridTemplateColumns: 'repeat(5, 1fr)'} : {gridTemplateColumns: 'repeat(4, 1fr)'}}>
+                  <div className="uni_item" style={colsize ? (products && products.length <= 0 ? {gridTemplateColumns: 'repeat(5, 1fr)', display: 'flex'} : {gridTemplateColumns: 'repeat(5, 1fr)'}) : {gridTemplateColumns: 'repeat(4, 1fr)'}}>
+
                         {isLoading ? (
                           products && products.length!==0 ? (<>
                            { products.map((item, index) => {
@@ -166,7 +167,10 @@ useEffect(()=>{
                             })}
  
                          </> ) : (
-                            "No Items Present At the Moment"
+                          <div className="no_item_present">
+                                    No Items Present At the Moment
+                          </div>
+                       
                           )
                         ) : (
                           <UniversalPageSkeleton />
@@ -174,9 +178,9 @@ useEffect(()=>{
             </div>
             </div>
           </div>
-          {isLoading ? <div className="next_prev_button">
+          {isLoading && products.length>0 ? <div className="next_prev_button">
             Showing {totalProducts} of {total} Items
-                        <button className="load_more_button" onClick={e => { setcurrent(cur=>cur+1); setlimit(limit *current); setisLoading(false);}}>Load more products</button>
+                        {totalProducts === total ? "" : <button className="load_more_button" onClick={e => { setcurrent(cur=>cur+1); setlimit(limit *current); setisLoading(false);}}>Load more products</button>}
                   </div> : ""}
         </div>
       </div>

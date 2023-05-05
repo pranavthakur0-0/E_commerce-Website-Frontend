@@ -4,7 +4,8 @@ import Login from './pages/Login/Login.jsx'
 import Regsiter from './pages/Regsiter/Regsiter.jsx'
 import MyAccount from './pages/MyAccount/MyAccount.jsx'
 import Favourites from './pages/Favourites/Favourites.jsx'
-import { BrowserRouter as Router,Routes, Route} from 'react-router-dom';
+import { Routes, Route} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { Usercontext } from './context/authlogin';
 import { useEffect, useState } from 'react';
 import axios from 'axios'
@@ -32,6 +33,18 @@ function App() {
   const [colorArr, setcolorArr] = useState();
   const [cookiehead, setCookiehead] = useState('');
   const [cookie, setCookie] = useState('');
+
+
+   const location = useLocation(); // Use useLocation() hook within the <Router> component
+
+  const onTop = () => {
+    window.scrollTo(0, 0);
+  };
+
+  useEffect(() => {
+    onTop();
+  }, [location]);
+
 
   const getTempId = async() =>{
     try {
@@ -131,9 +144,12 @@ function App() {
    // eslint-disable-next-line
 },[]);
  
+
+
+
+
   return (
     <>
-      <Router>
       <Usercontext.Provider value={{loggedIn, setloggedIn, navHeight, setnavHeight, selected, setselected, link, setlink, fav, setfav, bagdata, setbagdata, setfavItems, favItems, bagcount, setgetbagcount, cartdata, setcartdata, colorArr, cookiehead, cookie}}>
           <Routes>
               <Route exact path='/' element={<Home />}></Route>
@@ -151,9 +167,10 @@ function App() {
               <Route exact path='/in_cart' element={<Cart />}></Route>
           </Routes>
         </Usercontext.Provider>
-      </Router>
     </>
   );
 }
 
 export default App;
+
+

@@ -315,6 +315,12 @@
                         }
                     }
                 }
+                & .no_item_present{
+                    position: absolute;
+                    font-size: 2rem;
+                    font-weight: 600;
+                    width: 100%;
+                }
             }
         }
         & .next_prev_button{

@@ -18,7 +18,7 @@ body{
     max-width: 100%;
     word-spacing: 0.03rem;
     letter-spacing: 0.05rem;
-    background-color: rgba(0, 0, 0, 0.025);
+    background-color: var(--background);
 }
 
  input[type=number]::-webkit-inner-spin-button, 

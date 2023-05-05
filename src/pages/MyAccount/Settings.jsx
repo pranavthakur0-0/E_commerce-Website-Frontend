@@ -14,11 +14,15 @@ export default function Settings() {
 
      const [info, setinfo] = useState({
         email:"",
+        firstname:"",
+        lastname:"",
+        gender:"",
         password:"",
-        date: "",
-        month: "",
-        year: "",
-        checked: false
+        date:"",
+        phonenumber : "",
+        market: "",
+        postal: "",
+        staffcard: "",
       });
 
 
@@ -55,10 +59,14 @@ export default function Settings() {
     console.log(info);
 }
 
+function handleChange(e){
+    setinfo({...info, [e.target.name]: e.target.value})
+    console.log(info);
+}
+
 
 const callApi = (event)=>{
     event.preventDefault();
-    console.log(event);
 }
 
 
@@ -137,60 +145,59 @@ const callApi = (event)=>{
                     <form onSubmit={callApi} >
                  <div className="input_wraper">
                     <label htmlFor="email">Email <span>*</span> </label>
-                    <input type="text" id="email" defaultValue={User.email} name="email" />
+                    <input type="text" id="email" onChange={handleChange}  defaultValue={User ? User.email : ''} name="email" />
                     <p>
                     Remember, if you change your email, you need to confirm it again. Make sure you click on the link in the confirmation email we sent you.
                     </p>
                  </div>
                  <div className="input_wraper">
-                    <label htmlFor="fname">First Name <span>*</span> </label>
-                    <input type="text" id="fname" defaultValue={User.firstname} name="fname" />
+                    <label htmlFor="firstname">First Name <span>*</span> </label>
+                    <input type="text" onChange={handleChange}  id="firstname" defaultValue={User ? User.firstname : ''} required aria-required name="firstname" />
                  </div>
                  <div className="input_wraper">
-                    <label htmlFor="lname">Last Name <span>*</span> </label>
-                    <input type="text" id="lname" defaultValue={User.lastname}  name="lname" />
+                    <label htmlFor="lastname">Last Name <span>*</span> </label>
+                    <input type="text" onChange={handleChange}  id="lastname" defaultValue={User ? User.lastname : ''} required aria-required  name="lastname" />
                  </div>
                  <div className="input_wraper">
                  <label htmlFor="dobd">Date Of Birth <span>*</span> </label>
                  <div className="mb_dob_wrap">
-                <input aria-label="DD" aria-required="true" name='date' placeholder='DD'  defaultValue={formatteddate(User.dateOfBirth).slice(0,2)}  maxLength={2}  className='input_box' id='dobd' pattern="[0-9]*" 
+                <input aria-label="DD" aria-required="true" name='date' placeholder='DD'  defaultValue={ User ? formatteddate(User.dateOfBirth).slice(0,2) : ""}  maxLength={2}  className='input_box' id='dobd' pattern="[0-9]*" 
                 onChange={e=>formatdate(e,2)}  type="text" />
                 <span>/</span>
               
                 <input  aria-label="MM" aria-required="true" name='month' placeholder='MM'
-                defaultValue={formatteddate(User.dateOfBirth).slice(3,5)}  maxLength={2}   className='input_box' id='dobm' pattern="[0-9]*" onChange={e=>formatdate(e,2)}  type="text" />
+                defaultValue={ User ? formatteddate(User.dateOfBirth).slice(3,5) : ""}  maxLength={2}   className='input_box' id='dobm' pattern="[0-9]*" onChange={e=>formatdate(e,2)}  type="text" />
                 <span>/</span>
-                <input  aria-label="YYYY" aria-required="true" name='year' placeholder='YYYY'  maxLength={4} className='input_box' id='doby'defaultValue={formatteddate(User.dateOfBirth).slice(6,10)} pattern="[0-9]*" onChange={e=>formatdate(e,4)} type="text" />
+                <input  aria-label="YYYY" aria-required="true" name='year' placeholder='YYYY'  maxLength={4} className='input_box' id='doby'defaultValue={ User ? formatteddate(User.dateOfBirth).slice(6,10) : ""}pattern="[0-9]*" onChange={e=>formatdate(e,4)} type="text" />
                 </div>
                  </div>
                 <div className="input_wraper">
-                    <label htmlFor="phone_num">Phone Number </label>
-                    <input type="text" id="phone_num" defaultValue={User.number} name="phone_num" />
+                    <label htmlFor="phonenumber">Phone Number </label>
+                    <input type="text" id="phonenumber" onChange={handleChange}  defaultValue={User.number} name="phonenumber" />
                  </div>
                  <div className="input_wraper">
                  <label htmlFor="gender">Gender <span>*</span> </label>
-                 <select  id = "gender" >  
+                 <select onChange={handleChange}  id = "gender" name="gender" required aria-required>  
                             <option> Please Select a gender </option>
-                            <option> Male </option>
-                            <option> Female </option>
-
+                            <option value="man"> Male </option>
+                            <option value="woman"> Female </option>
                             </select>  
                  </div>
                  <div className="input_wraper">
-                    <label htmlFor="postal" defaultValue={User.postalCode}>Postal Code <span>*</span> </label>
-                    <input type="number" id="postal" name="postal" />
+                    <label htmlFor="postal"required aria-required defaultValue={User.postalCode}>Postal Code <span>*</span> </label>
+                    <input type="number" id="postal" onChange={handleChange}  name="postal" />
                  </div>
                  <div className="input_wraper">
                     <label htmlFor="staff" defaultValue={User.staffCard}>Staff Card </label>
-                    <input type="text" id="staff" name="staff" />
+                    <input type="text" id="staff" onChange={handleChange}  name="staff" />
                  </div>
                  <div className="input_wraper">
-                    <label htmlFor="market" defaultValue={User.market}>Market  </label>
-                    <input type="text" id="market" name="market" />
+                    <label htmlFor="market"  defaultValue={User.market}>Market  </label>
+                    <input type="text" id="market" onChange={handleChange}  name="market" />
                  </div>
                  <div className="input_wraper">
                     <label htmlFor="password">Password <span>*</span> </label>
-                    <input type="password" id="password" name="pass" />
+                    <input type="password" onChange={handleChange} required aria-required id="password" name="pass" />
                     <p>We.Desgin will process your data in accordance with H&M's Privacy Notice</p>
                  </div>
                  <div className="button_wrapper">

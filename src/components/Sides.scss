@@ -1,19 +1,18 @@
 .sides{
     margin-top: 5rem;
-    font-size: 2.5rem;
-    font-weight: 400;
+    font-size: 3rem;
+    font-weight: 500;
     padding: 0rem 7rem;
     text-align: center;
 }
 .sd_main{
     margin-top: 2rem;
-    padding: 0rem 7rem;
-    height: 30rem;
+    height: 40rem;
     display: flex;
     justify-content: space-around;
     .side{
         height: 100%;
-        width: 45%;
+        width: 50%;
         position: relative;
         background-size: cover;
         background-position: center;
@@ -36,24 +35,25 @@
             transform: translate(-50%, -50%);
             cursor: pointer;
             position: absolute;
-            background-color: rgba(0, 0, 0, 0);
-            color: white;
+         
             border: none;
             padding: 0.9rem 1.5rem;
             font-weight: 400;
             transition: 0.25s ease-in-out;
             border: 1px solid white;
+            background-color: rgb(255, 255, 255);
+            color: black;
             &:hover{
-                background-color: rgb(255, 255, 255);
-                color: black;
+                color: white;
+                background-color: black;
             }
         }
     }
     .men{
-        background-image: url(../images/men.avif);
+        background-image: url(https://images.hugoboss.com/is/image/hugobossdm/HBME_110_S23SR_BOSS_Campaign_Matteo_Look5_001?%24large%24&fmt=webp&cropN=0.1390625,0,0.6882812,1&align=0,-1&fit=crop,1&ts=1675774325343&qlt=80&wid=720&hei=696);
+        filter: brightness(90%);
     }
     .women{
-
-        background-image: url(../images/women.avif);
+        background-image: url(https://images.hugoboss.com/is/image/hugobossdm/HBME_110_S23SR_BOSS_Campaign_Gigi_Look5_001?%24large%24&fmt=webp&cropN=0.034375,0,0.6882812,1&align=0,-1&fit=crop,1&ts=1675774325286&qlt=80&wid=720&hei=696);
     }
 }

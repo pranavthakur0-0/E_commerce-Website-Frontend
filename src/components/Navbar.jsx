@@ -29,7 +29,7 @@ export default function Navbar()
     useEffect(() => {
       const parallax = e => {
         const scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
-        if (scrollPos < 100) {
+        if (scrollPos > 0) {
           setchangecss(true);
         }
         else{
@@ -399,7 +399,7 @@ export default function Navbar()
                                    onMouseEnter={e=>handleMouseEnter()}
                                    onMouseLeave={e=>handleMouseLeave()}
                               >
-                            <Link to="/in_cart" className='universal_link' onClick={() => setbag(false)}>
+                            <Link to="/in_cart" className='universal_link' onClick={() => setbag(false)} style={changecss && gender && item===undefined ? {color : "white"} : {color : "black"}}>
                             <HiOutlineShoppingBag className='icon'  /> Bag ({bagcount ? bagcount : 0})   </Link>
 
                             <div className={bag ? "bag_box bag_box_open" : "bag_box"}>

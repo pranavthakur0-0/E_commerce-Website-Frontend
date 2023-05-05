@@ -18,7 +18,7 @@
    
             width: 100%;
             display: flex;
-            background-color: #ffffff;
+            background-color: #F9F9F9;
             justify-content: center;
             align-items: center;
             height: fit-content;
@@ -29,7 +29,7 @@
                 flex: 1;
                 height: 45vh;
                 z-index: 99;
-                background-color: #ffffff;
+                background-color: #F9F9F9;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -69,7 +69,7 @@
 
             & .container{
                 height: 45vh;
-                background-color: #ffffff;
+                background-color: #F9F9F9;
                 display: flex;
                 gap: 7px;
                 width: 1021px;
@@ -79,7 +79,7 @@
                     width: 250px;
                     min-width: 250px;
                     max-width: 250px;
-                    background-color: #ffffff;
+                    background-color: #F9F9F9;
                     display: flex;
                 }
             }
@@ -89,7 +89,7 @@
             padding: 2rem;
             width: 100%;
             height: fit-content;
-            background-color: white;
+            background-color: #F9F9F9;
             display: flex;
             justify-content: center;
             & .offer_con{

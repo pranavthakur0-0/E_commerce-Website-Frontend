@@ -59,7 +59,73 @@
         & .in_cart_checkout{
             width: 22rem;
             background-color: white;
-            height: 2rem;
+            height: fit-content;
+            padding: 1rem;
+            & .discount{
+                display: flex;
+                justify-content: space-between;
+            }
+            & .line_con{
+                padding: 1rem 0rem;
+                & .line{
+                    height: 1px;
+                    background-color: rgb(175, 175, 175);
+                }
+            }
+            & .total{
+                transform: translateY(-10px);
+                display: flex;
+                justify-content: space-between;
+                font-weight: 500;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+             & .checkOut{
+                padding-top: 1.5rem;
+                & button{
+                    cursor: pointer;
+                    border: 0px;
+                    height: 3rem;
+                    width: 100%;
+                    background-color: #222222;
+                    color: white;
+                    display: flex;
+                    gap: 0.3rem;
+                    align-items: center;
+                    justify-content: center;
+                    letter-spacing: 0.04rem;
+                }
+             }
+             & .accept{
+                font-size: 0.8rem;
+                padding-bottom: 0.3rem;
+                padding-top: 1rem;
+             }
+             .text{
+                font-size: 0.8rem;
+                font-weight: 500;
+                line-height: 1rem;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                & .icon{
+                    height: 1.5rem;
+                }
+             }
+             & p{
+                color: rgb(108, 108, 108);
+             }
+             & .order_Delivery{
+                display: flex;
+                flex-direction: column;
+                gap: 0.7rem;
+                font-size: 0.9rem;
+                & .order{
+                    display: flex;
+                    justify-content: space-between;
+                }
+             }
         }
         }
     }
@@ -147,7 +213,7 @@
 
   .main_product_incart{
     display: flex;
-    height: 100%;
+    height: fit-content;
     width: 100%;
     gap: calc(0.5rem + 1vw);
     & .main_product_incart_image{

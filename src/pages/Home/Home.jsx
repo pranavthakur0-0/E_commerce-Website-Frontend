@@ -16,7 +16,6 @@ export default function Home()
             <Navbar></Navbar>
             <Slider/>
             <Sides></Sides>
-            <HomeCategories></HomeCategories>
             <Discover></Discover>
             <NewArrival></NewArrival>
             <SeasonBanner></SeasonBanner>

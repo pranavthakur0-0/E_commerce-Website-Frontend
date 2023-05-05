@@ -8,7 +8,7 @@ export default function Men()
     return <>
         <div className="home_cl_1">
             <Navbar></Navbar>
-            <MenHome></MenHome>
+                    <MenHome></MenHome>
             <Footer></Footer>
         </div>
     </>
