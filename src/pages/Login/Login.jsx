@@ -24,7 +24,7 @@ export default function Login(){
            async function LoginApi()
            {
             try{
-              const data = await axios.post("http://localhost:4000/api/server/login", info,{withCredentials : true,});  
+              const data = await axios.post("http://localhost:4000/api/server/login", {info},{withCredentials : true,});  
               if(data)
               {
                 e.target.reset();

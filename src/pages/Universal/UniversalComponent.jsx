@@ -1,14 +1,15 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { Usercontext } from "../../context/authlogin";
 import './Universal.scss';
 import axios from "axios";
 import { BsChevronDown } from "react-icons/bs";
+import Sidelinks from "./Sidelinks.jsx"
+import SearchSidelinks from "./SearchSidelinks.jsx"
 
-export default function UniversalComponent() {
-  const { navHeight, fav, colorArr} = useContext(Usercontext);
-  const { gender, item, headerlink} = useParams();
-  const [sidelinks, setsidelinks] = useState();
+export default function UniversalComponent({genderState, setgenderState, productCountByGender, setproductCountByGender}) {
+  const { navHeight, fav, colorArr, searchValue} = useContext(Usercontext);
+  let { gender, item, headerlink} = useParams();
   const [products, setproducts] = useState();
   const [isLoading, setisLoading] = useState(false);
   const [wait, setwait] = useState(false);
@@ -22,29 +23,40 @@ export default function UniversalComponent() {
   const [total, settotal] = useState();
   const [limit, setlimit] = useState(5);
   const [current, setcurrent] = useState(2);
+  const location = useLocation();
+  const hasSearch = location.pathname.includes("search");
 
-
-  
   useEffect(() => {
-    const fetchLinks = async () => {
+    const fetchData = async () => {
+      setproducts('');
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/getLinks/${gender}/`, {withCredentials : true,});
-        if (response) {
-          setsidelinks(prevLinks => response.data.links);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/admin/products?&search=${true}&query=${searchValue}&sort=${sort}&color=${color}&limit=${limit}&gender=${genderState}`);
+        if (response.data.products) {
+          setwait(true);
+          setproducts(response.data.products);
+          settotalProducts(response.data.totalProducts);
+          settotal(response.data.total);
+          setproductCountByGender(response.data.productCountByGender);
         }
       } catch (err) {
         console.log(err);
       }
     };
-    fetchLinks();
-    
+  
+    if (hasSearch) {
+        fetchData();
+    }
+    setisLoading(false);
     // eslint-disable-next-line
-  }, [gender, item, headerlink]);
+  }, [searchValue, sort, color, limit, genderState]);
+
 
   useEffect(()=>{
+
     const fetchProducts = async () => {
+      setproducts('');
       try {
-        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/admin/products/${gender}/${headerlink}/${item}?sort=${sort}&color=${color}&limit=${limit}`);
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/admin/products?headerlink=${headerlink}&gender=${gender}&item=${item}&sort=${sort}&color=${color}&limit=${limit}`);
         if (response) {
           setwait(true);
           setproducts(response.data.products);
@@ -55,12 +67,14 @@ export default function UniversalComponent() {
         console.log(err);
       }
     };
-    fetchProducts();
+    if(!hasSearch){
+      fetchProducts();
+    }   // eslint-disable-next-line
   },[gender, item, headerlink, sort, color, limit])
 
   useEffect(()=>{
     const timeout = setTimeout(()=>{
-        if(wait){
+        if(wait && products){
             setisLoading(true);
         }
     },800);
@@ -77,32 +91,26 @@ function hidedropdown() {
   }
 }
 
-
-useEffect(()=>{
-  console.log(colsize);
-},[colsize])
-
   return (
     <>
-<div  className="uni_con"  style={{ paddingTop: `${navHeight}px` }}  onClick={(e) => hidedropdown()}>
+      <div  className="uni_con"  style={{ paddingTop: `${navHeight}px` }}  onClick={(e) => hidedropdown()}>
         <div className="home_cl_products">
+          {hasSearch ? products && products.length>0  ? searchValue ? <h2>SHOWING RESULTS FOR <b>"{searchValue}"</b></h2> :  <h2> </h2> : 
+          isLoading ? 
+          <div className="no_matching_item">
+            <h2>NO MATCHING ITEMS</h2>
+            <p>Your search <b>"{searchValue}"</b> did not match any results.</p>
+            <p>Please check the spelling or try again with a less specific term</p>
+          </div> : <h2> </h2> : ""}
           <div className="pdts_wrap">
             <div className="pdts_sd_lk">
-
-            {sidelinks ? sidelinks.map((item, index) => {
-    return <dl key={index}>
-      <dt>
-        <p>{item ? item.headlinks : ""}</p>
-      </dt>
-      {item.sublinks.map((sublink, index) => {
-    return <Link className="universal_link" onClick={e=>{setisLoading(false);setsort('{"_id": -1}')}} to={`/index/${gender}/${item.headlinks}/${sublink.link}`} key={index}><dd data={sublink._id}>{sublink.link}</dd></Link> 
-      })}
-    </dl>
-  }) : ""}
+              {hasSearch ? <SearchSidelinks settotal={settotal} setisLoading={setisLoading}  setgenderState={setgenderState} productCountByGender={productCountByGender} /> : <Sidelinks  setisLoading={setisLoading} setsort={setsort} ></Sidelinks>}
+               
             </div>
             <div className="pdts_sd_lt">
-                  <h1>{item}</h1>
-                  <div className="query_items">
+            {hasSearch ? "" :  <h1>{item}</h1>}
+             
+                 {products && products.length>0 ?  <div className="query_items">
                     <div className="query_items_one">
                       <button className="sort_universal_componenet" onClick={e=>setsorttoggle(cur=>!cur)}>SORT BY <BsChevronDown className={sorttoggle ? "down_icon" : "none"} /></button>
                       <ul name="sorting" id="sorting" style={sorttoggle ? {display : "flex"} : {display : "none"}}  className="sort_menu">
@@ -147,34 +155,50 @@ useEffect(()=>{
                         </div>
                       </div>
                       </div>
-                  </div>
+                  </div> : ""}
 
                   <div className="uni_item" style={colsize ? (products && products.length <= 0 ? {gridTemplateColumns: 'repeat(5, 1fr)', display: 'flex'} : {gridTemplateColumns: 'repeat(5, 1fr)'}) : {gridTemplateColumns: 'repeat(4, 1fr)'}}>
 
-                        {isLoading ? (
-                          products && products.length!==0 ? (<>
-                           { products.map((item, index) => {
-                              const isFav = fav && fav.includes(item._id);
-                              return (
-                                <ProductItem
-                                  item={item}
-                                  key={index}
-                                  isfav={isFav}
-                                  colsize={colsize}
-                                  img={img}
-                                />
-                              );
-                            })}
- 
-                         </> ) : (
-                          <div className="no_item_present">
-                                    No Items Present At the Moment
-                          </div>
-                       
-                          )
-                        ) : (
-                          <UniversalPageSkeleton />
-                        )}
+                  {isLoading ? (
+                        products && products.length !== 0 ? (
+                          <>
+                            {genderState
+                              ? products.map((item, index) => {
+                                  if (item.gender === genderState) {
+                                    const isFav = fav && fav.includes(item._id);
+                                    return (
+                                      <ProductItem
+                                        item={item}
+                                        key={index}
+                                        isfav={isFav}
+                                        colsize={colsize}
+                                        img={img}
+                                      />
+                                    );
+                                  }
+                                  return null;
+                                })
+                              : products.map((item, index) => {
+                                  const isFav = fav && fav.includes(item._id);
+                                  return (
+                                    <ProductItem
+                                      item={item}
+                                      key={index}
+                                      isfav={isFav}
+                                      colsize={colsize}
+                                      img={img}
+                                    />
+                                  );
+                                })}
+                          </>
+                        ) 
+                         : (
+                         ""
+                        )
+                      ) : (
+                        <UniversalPageSkeleton />
+                      )}
+                      
             </div>
             </div>
           </div>
@@ -224,6 +248,7 @@ function ProductItem (props){
       }
     }
   }
+
 
 
 

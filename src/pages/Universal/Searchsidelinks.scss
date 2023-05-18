@@ -1,0 +1,14 @@
+.searchside_links_index{
+    list-style: none;
+    font-size: 0.8rem;
+    padding-right: 3rem;
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+  
+    & li{
+        display: flex;
+        justify-content: space-between;
+        cursor: pointer;
+    }
+}

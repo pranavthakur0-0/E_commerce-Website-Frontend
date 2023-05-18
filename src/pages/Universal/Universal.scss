@@ -30,25 +30,42 @@
         display: flex;
         justify-content: center;
         flex-direction: column;
-        h1{
+        & h1{
             font-size: 2rem;
             font-weight: 400;
             padding: 0rem 7rem;
         }
-        .pdts_wrap{
+        & h2{
+            text-align: center;
+            padding-top: 5rem;
+            font-size: 1.5rem;
+            padding-bottom: 1rem;
+        }
+        & .no_matching_item{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 0.3rem;
+            & p{
+                text-align: center;
+                font-size: 0.8rem;
+            }
+        }
+        & .pdts_wrap{
             display: flex;
             max-width: 1440px;
             flex: 1;
             padding-bottom: 5rem;
-            .pdts_sd_lk{
+            & .pdts_sd_lk{
                 display: flex;
                 min-width: 15rem;
                 width: fit-content;
                 height: fit-content;
                 padding-left: 25px;
                 flex-direction: column;
-                padding-top: 2rem;
                 gap: 2rem;
+                padding-top: 3rem;
                 dl:first-child{
                     padding-top: 2rem;
                 }
@@ -81,7 +98,7 @@
                        }
                 }
             }
-            .pdts_sd_lt{
+            & .pdts_sd_lt{
                 display: flex;
                 flex: 1;
                 flex-direction: column;
@@ -90,7 +107,7 @@
                     padding: 1.5rem;
                     font-weight: 600;
                     height: fit-content;
-                    padding-top: 3.5rem;
+                    padding-top: 4.5rem;
                 }
                 & .query_items{
                     padding: 1rem;
@@ -179,7 +196,7 @@
                                 -webkit-backdrop-filter: blur( 4px );
                                 border-radius: 10px;
                             & li{
-
+                                position: relative;
                                 list-style: none;
                                 font-size: 0.7rem;
                                 padding: 1rem;
@@ -189,7 +206,7 @@
                                 gap: 2rem;
                                 align-items: center;
                                 &:hover{
-                                    background-color: rgb(217, 217, 217);
+                                    background-color: rgb(217, 217, 217)!important;
                                     cursor: pointer;
                                 }
                                 & .color_box{
@@ -248,7 +265,7 @@
                 }
             & .uni_item{
                 position: relative;
-                display: grid;
+                display: grid !important;
                 grid-template-columns: repeat(5, 1fr);
                 gap: 1rem;
                 padding-right: 100%;
@@ -271,13 +288,14 @@
                             width: 13rem;
                             z-index: 1;
                             filter: brightness(98%);
+                            transition: 0.3s ease-in-out;
                         }
                         & .uni_fav_icon{
                             position: absolute;
                             bottom: 1.5rem;
                             right: 1rem;
                             height: 1.5rem;
-                            z-index: 1;
+                            z-index: 0;
                         }
                     }
                     & .text_wrapp{

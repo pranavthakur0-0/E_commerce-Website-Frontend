@@ -10,22 +10,81 @@ import Navlink from "./Navlinks"
 import { Usercontext } from '../context/authlogin';
 import { BsChevronDown } from "react-icons/bs";
 import { useCookies } from 'react-cookie';
+import { CiSearch } from "react-icons/ci";
+import { useLocation} from "react-router-dom";
 
-
-export default function Navbar()
+export default function Navbar() 
 {
+    const spaceNav = useRef();
     const [bag ,setbag] = useState(false);
     const [login ,setlogin] = useState('')
     const [links, setlinks] = useState(false);
     const [navlink, setnavlink] = useState();
-    const {loggedIn, setloggedIn, setnavHeight, setbagdata, bagdata, bagcount,  cookie, cookiehead } = useContext(Usercontext);
+    const {loggedIn, setloggedIn, setnavHeight, setbagdata, bagdata, bagcount,  cookie, cookiehead, searchValue, setSearchValue } = useContext(Usercontext);
     const navref = useRef();
     const {gender, item} = useParams();
     const [changecss, setchangecss] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [cookies , , removeCookie] = useCookies(["Wedesgin_tempID"]);
-    
-    
+    const [navspace , setnavspace] = useState();
+    const [suggestions, setSuggestions] = useState([]);
+    const [SuggesShow, setSugessShow] = useState();
+    const suggestionsRef = useRef(null);
+    const navigate = useNavigate();
+    const [changeloading, setchangeloading] = useState();
+    const [tempSearch, settempSearch] = useState('');
+    const location = useLocation();
+    const hasSearch = location.pathname.includes("search");
+
+    async function fetchrecom(value){
+      try{
+        const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/search?query=${value}`);
+        setSuggestions(response.data);
+      }catch (error) {
+        console.error(error);
+      }
+    }
+
+
+    const handleInputChange = (event)=> {
+      setSugessShow(true);
+      if(!event.target.value){
+        setSugessShow(false)
+        setSuggestions([]);
+        const value = event.target.value;
+        settempSearch(value)
+      }else{
+        const value = event.target.value;
+        settempSearch(value)
+        fetchrecom(value);
+      }
+    };
+
+
+    useEffect(()=>{
+        if(hasSearch){
+          settempSearch(searchValue);
+        }else{
+          settempSearch('');
+          setSearchValue('');
+        }
+   
+    },[searchValue, hasSearch, setSearchValue])
+
+    useEffect(() => {
+      const handleClickOutside = (event) => {
+        if (suggestionsRef.current && !suggestionsRef.current.contains(event.target)) {
+          // Clicked outside the suggestions list, hide the suggestions
+          setSugessShow(false);
+        }
+      };
+  
+      document.addEventListener('click', handleClickOutside);
+      return () => {
+        document.removeEventListener('click', handleClickOutside);
+      };
+    }, []);
+  
     useEffect(() => {
       const parallax = e => {
         const scrollPos = document.documentElement.scrollTop || document.body.scrollTop;
@@ -41,6 +100,10 @@ export default function Navbar()
         window.removeEventListener("scroll", parallax);
       }
     }, []);
+
+    useEffect(()=>{
+      setnavspace(spaceNav.current.getBoundingClientRect().width)
+    },[spaceNav])
     
     useEffect(() => {
       const links = document.querySelector('.nav_cl_links');
@@ -356,8 +419,23 @@ export default function Navbar()
         setIsLoading(false);
         setbag(false);
       };
-    
 
+  
+      const searchbylist = (value)=>{
+        navigate('/index/search', { state: { searchValue: value, changeloading :changeloading } });
+      }
+      const checkforEnter = (event, value)=>{
+        if(event.code === "Enter"){
+          if(value!==searchValue){
+            setchangeloading(curr=>!curr);
+            setSearchValue(value)
+            settempSearch(value);
+            setSugessShow(false);
+            searchbylist(value);
+          }
+        }
+      }
+    
 
     return <>
     <div className="nav_root">
@@ -410,6 +488,7 @@ export default function Navbar()
                             </div>
                 </div>
                 <div className="nav_cl_links">
+                            <div className="space" style={{width : `${navspace}px`}} ></div>
                     <ul>
                     <li onMouseEnter={e=>{setnavlink('women'); setlinks(true)}} onMouseLeave={e=>setlinks(false)}>
                     <Link to="/index/women" onClick={e=>{setlinks(false)}} className='universal_link'>Ladies</Link>
@@ -422,7 +501,27 @@ export default function Navbar()
                     <li onMouseEnter={e=>{setnavlink('sport'); setlinks(true)}} onMouseLeave={e=>setlinks(false)}>Sport</li>
                     <li onMouseEnter={e=>{setnavlink('sale'); setlinks(true)}} onMouseLeave={e=>setlinks(false)}>Sale</li>
                     <li onMouseEnter={e=>{setnavlink('sustain'); setlinks(true)}} onMouseLeave={e=>setlinks(false)}>Sustainability</li></ul>
+                           <div ref={spaceNav} className="search_wrapper">
+                            <CiSearch className='icon' onClick={searchbylist} />
+                            <input type="text"  value={tempSearch}   onChange={handleInputChange} onKeyDown={e=>checkforEnter(e, tempSearch)} className='search_products' placeholder='Search products' />
+                            {SuggesShow ? <ul ref={suggestionsRef} className='suggestion_list'>
+                                {suggestions.map((suggestion, index) => (
+                                  <li onClick={e=>{
+                                    settempSearch(suggestion);   
+                                    if(suggestion!== searchValue){
+                                      setSugessShow(false);
+                                      setchangeloading(curr=>!curr);
+                                      searchbylist(suggestion);
+                                      setSearchValue(suggestion);
+                                      }
+                                  }} key={index}>{suggestion}</li>
+                                ))}
+                              </ul> : "" }
+                            
+                          </div>
                 </div>
+                           
+         
                 <div className={links ? "content show_content" : "content"} onMouseEnter={e=>{setlinks(true)}} onMouseLeave={e=>setlinks(false)} >
                         <Navlink gender={navlink} ></Navlink>
                 </div>

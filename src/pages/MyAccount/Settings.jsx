@@ -6,6 +6,7 @@ import { SettingsContext } from "../../context/authlogin";
 
 
 export default function Settings() {
+
     const {settingMenu, setsettingMenu} = useContext(SettingsContext);
     const navigate = useNavigate();
     const [cookies] = useCookies(['Wedesgin_loggedIn_permanent']);
@@ -22,19 +23,24 @@ export default function Settings() {
         phonenumber : "",
         market: "",
         postal: "",
-        staffcard: "",
+        staff: "",
       });
-
-
     const getUsers = async () => {
         const user = await axios.get("http://localhost:4000/api/server/profile",{
             withCredentials: true, // This will send the cookie with the request
             headers: {
               'X-CSRF-Token': cookies.Wedesgin_loggedIn_permanent // Use the cookie name as the key to access its defaultValue
-            }})
+            }});
         if(user){
             setUser(user.data.user);
         }};
+
+        useEffect(()=>{
+            setinfo(info => ({ ...info, email: User ? User.email : '' }));
+            setinfo(info => ({ ...info, date: User ? User.dateOfBirth : '' }));
+        },[User]);
+
+        
         
   useEffect(() => {
     if (menu === "settings") {
@@ -61,12 +67,18 @@ export default function Settings() {
 
 function handleChange(e){
     setinfo({...info, [e.target.name]: e.target.value})
-    console.log(info);
 }
 
 
-const callApi = (event)=>{
+const callApi = async(event)=>{
+    console.log("hello");
     event.preventDefault();
+    console.log(info);
+     const response = await axios.post("http://localhost:4000/api/server/profile", {info},{
+     headers: {
+       'X-CSRF-Token': cookies.Wedesgin_loggedIn_permanent // Use the cookie name as the key to access its defaultValue
+     }});
+
 }
 
 
@@ -172,7 +184,7 @@ const callApi = (event)=>{
                 </div>
                  </div>
                 <div className="input_wraper">
-                    <label htmlFor="phonenumber">Phone Number </label>
+                    <label htmlFor="phonenumber">Phone Number <span>*</span> </label>
                     <input type="text" id="phonenumber" onChange={handleChange}  defaultValue={User.number} name="phonenumber" />
                  </div>
                  <div className="input_wraper">
@@ -197,7 +209,7 @@ const callApi = (event)=>{
                  </div>
                  <div className="input_wraper">
                     <label htmlFor="password">Password <span>*</span> </label>
-                    <input type="password" onChange={handleChange} required aria-required id="password" name="pass" />
+                    <input type="password" onChange={handleChange} required aria-required id="password" name="password" />
                     <p>We.Desgin will process your data in accordance with H&M's Privacy Notice</p>
                  </div>
                  <div className="button_wrapper">

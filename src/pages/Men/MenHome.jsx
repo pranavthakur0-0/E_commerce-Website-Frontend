@@ -42,7 +42,6 @@ export default function HomeProduct()
                      <h1>NEW IN</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea fugiat hic mollitia, at earum a nulla excepturi </p>
                     <button className='men_index' onClick={(e) => navigate(`/index/men/Shop%20by%20Product/View%20All`)} links="View All">VIEW</button>
-1
                 </div>
                          <ul className='men_side_link'>
                             <li className='men_index' onClick={(e) =>   navigate(`/index/men/New%20Arrivals/View%20All`)}>New Arrivals</li>

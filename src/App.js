@@ -17,6 +17,7 @@ import Index from './pages/Index/Index';
 import UniversalPage from './pages/Universal/Universalpage';
 import Product from './pages/Product/Product';
 import Cart  from './pages/Cart/Cart.jsx'
+import Search from './pages/Search/Search';
 
 function App() {
   const [loggedIn, setloggedIn] = useState(false);
@@ -33,6 +34,7 @@ function App() {
   const [colorArr, setcolorArr] = useState();
   const [cookiehead, setCookiehead] = useState('');
   const [cookie, setCookie] = useState('');
+  const [searchValue, setSearchValue] = useState('');
 
 
    const location = useLocation(); // Use useLocation() hook within the <Router> component
@@ -150,7 +152,13 @@ function App() {
 
   return (
     <>
-      <Usercontext.Provider value={{loggedIn, setloggedIn, navHeight, setnavHeight, selected, setselected, link, setlink, fav, setfav, bagdata, setbagdata, setfavItems, favItems, bagcount, setgetbagcount, cartdata, setcartdata, colorArr, cookiehead, cookie}}>
+      <Usercontext.Provider value={{loggedIn, setloggedIn, navHeight, 
+                                    setnavHeight, selected, setselected, 
+                                    link, setlink, fav, setfav, bagdata, 
+                                    setbagdata, setfavItems, favItems, 
+                                    bagcount, setgetbagcount, cartdata, 
+                                    setcartdata, colorArr, cookiehead, 
+                                    cookie, searchValue, setSearchValue}}>
           <Routes>
               <Route exact path='/' element={<Home />}></Route>
               <Route exact path='/account' element={<MyAccount />}></Route>
@@ -165,6 +173,7 @@ function App() {
               <Route exact path='/index/:gender/:headerlink/:item' element={<UniversalPage />}></Route>
               <Route exact path='/product/:productId' element={<Product />}></Route>
               <Route exact path='/in_cart' element={<Cart />}></Route>
+              <Route exact path='/index/search' element={<Search />}></Route>
           </Routes>
         </Usercontext.Provider>
     </>
