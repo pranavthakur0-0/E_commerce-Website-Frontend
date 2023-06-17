@@ -1,8 +1,9 @@
-import { useState } from "react";
+//import { useState } from "react";
 import "./Dashboard.scss"
 import { RxDashboard } from "react-icons/rx";
 export default function DashBoard(){
-    const [tab, settab] = useState('dashboard');
+   // const [tab, settab] = useState('dashboard');
+    const tab = 'dashboard';
     return (<>
         <div className="main_DashBoard_wrapper">
             <div className="nav">
