@@ -82,12 +82,11 @@
             }
              & .checkOut{
                 padding-top: 1.5rem;
-                & button{
+                & button {
                     cursor: pointer;
                     border: 0px;
                     height: 3rem;
                     width: 100%;
-                    background-color: #222222;
                     color: white;
                     display: flex;
                     gap: 0.3rem;
@@ -95,6 +94,15 @@
                     justify-content: center;
                     letter-spacing: 0.04rem;
                 }
+                & .non_empty{
+                    background-color: #222222;
+                }
+                & .empty{
+                    background-color: #5c5c5c;
+                    cursor: not-allowed;
+                    pointer-events: all !important;
+                }
+
              }
              & .accept{
                 font-size: 0.8rem;

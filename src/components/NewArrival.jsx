@@ -62,6 +62,17 @@ export default function NewArrival(){
 
 
 return <>
+
+
+    <div className="new_main_poster">
+    <div className="new_main_poster_img">
+
+      </div>
+      <div className="text">
+           <p>New Arrival</p>
+           </div>
+    </div>
+
     <div className="new_main">
         <div className="head">
         <h1>RECOMMENDED <br /> NEW ARRIVALS</h1>

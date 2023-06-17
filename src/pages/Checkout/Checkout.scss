@@ -1,0 +1,340 @@
+.main_checkout{
+    & .navbar{
+        position: relative;
+        height: 5rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        & .nav_mod_2_home_link{
+                color: black;
+                text-decoration: none;
+            & span{
+                font-weight: 500;
+                font-size: 2rem;
+                padding-bottom: 0.1rem;
+            }
+        }
+        & .go_back{
+            cursor: pointer;
+            width: fit-content;
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            & .go_back_icon{
+                height: 0.9rem;
+            }
+            & .text{
+                font-size: 0.7rem;
+                &:hover{
+                    border-bottom: 1px solid black;
+                }
+            }
+        }
+    }
+    & .checkOut_heading{
+        padding-top: 4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+    & .checkOut_con{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        gap: 2rem;
+        padding: 3rem calc(1rem + 11vw);
+        padding-top: 5rem;
+
+        & .checout_info{
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            & .check_user_info{
+                flex: 1;
+                line-height: 1.2307692308;
+                font-size: .7125rem;
+                font-weight: 400;
+                text-transform: none;
+                background-color: white;
+                padding: 2rem;
+               & .header{
+                display: flex;
+                justify-content: space-between;
+                & .edit_icon{
+                    height: 1rem;
+                }
+               }
+                
+                & .check_user_text{
+                    padding-top: 0.5rem;
+                    & label{
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        padding-top: 1rem;
+                        line-height: 1rem;
+                        & span{                          
+                            display: flex;          
+                            gap: 0.2rem;
+                        }
+                        & span span{
+                            color: red;
+                            font-size: 1rem;
+                        }
+                        & input {
+                            width: 100%;
+                            height: 48px;
+                            padding: 8px;
+                            line-height: 1.25;
+                            font-weight: 400;
+                            text-transform: none;
+                            border: 1px solid;
+                            border-radius: 0;
+                            box-sizing: border-box;
+                            font-size: 1rem;
+                        }
+                    }
+                    & .mb_dob_wrap{
+                        display: flex;
+                        align-items: center;
+                        border: 1px solid black;
+                       & input{
+                        height: 3rem;
+                        flex: 1;
+                        text-align: center;
+                        border: 0px;
+                       }
+                    }
+                    & .phone_number{
+                        display: flex;
+                        & .code{
+                            height: 3rem;
+                            width: 3rem;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border: 1px solid black;
+                            border-right: 0px;
+                            background-color: white;
+                        }
+                    }
+                    & select{
+                        height: 3rem;
+                        width: 100%;
+                        padding-left: 0.5rem;
+                    }            
+                    #state{
+                        margin-top: 1.5rem;
+                    }
+                    & .wrapper{
+                        display: flex;
+                        gap: 2rem;
+                        flex: 1;
+
+                    }
+                    & .button_wrapper{
+                        padding: 3rem 1rem 0rem 1rem;
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5rem;
+                        justify-content: center;
+                        align-items: center;
+                        & button {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            color: #fff;
+                            min-height: 48px;
+                            padding: 16px;
+                            width: 20rem;
+                            background-color: white;
+                            border: 0px;
+                            color: black;
+                            gap: 0.2rem;
+                            cursor: pointer;
+                        }
+                        & .save{
+                            border: 1px solid;
+                            border-radius: 0;
+                            box-shadow: 0px 0px 0px 0px #000;
+                            background: #222;
+                            border-color: #222;
+                            color: white;
+                        }
+                        & .cancel{
+                            height: 1rem;
+                        }
+                    }
+
+
+                }
+            }
+            & .viewOrder_details{
+                padding: 2rem;
+                padding-top: 3rem;
+                background-color: white;
+                & .text{
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding-bottom: 1rem;
+                }
+                & .image_wrap{
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 1.5rem;
+                    & .div_products{
+                        & .image{
+                            height: 13rem;
+                            filter: brightness(98%);
+                            &:hover{
+                                filter: brightness(90%);
+                            }
+                        }
+                    }
+                }
+
+            }
+            & .PaymentType{
+                padding: 2rem;
+                background-color: white;
+                & p{
+                    font-weight: 600;
+                    font-size: 0.8rem;
+                    padding-top: 1rem;
+                }
+                & .radio_bt{
+                    display: flex;
+                    flex-direction: column;
+                    padding-top: 1rem;
+                    gap: 0.5rem;
+                }
+                & .wrapper{
+                    display: flex;
+                    gap: 1rem;
+                    input[type='radio']{
+                        width: 25px;
+                        height: 25px;
+                        accent-color: #222222;
+                    }
+                    & label{
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 0.7rem;
+                    }
+                }
+            }
+        }
+        & .checkout_sidebar{
+            width: 22rem;
+            height: 10vh;
+            background-color: black;
+            & .in_cart_checkout{
+            width: 22rem;
+            background-color: white;
+            height: fit-content;
+            padding: 1rem;
+            & .discount{
+                display: flex;
+                justify-content: space-between;
+            }
+            & .line_con{
+                padding: 1rem 0rem;
+                & .line{
+                    height: 1px;
+                    background-color: rgb(175, 175, 175);
+                }
+            }
+            & .total{
+                transform: translateY(-10px);
+                display: flex;
+                justify-content: space-between;
+                font-weight: 500;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+             & .checkOut{
+                padding-top: 1.5rem;
+                & button {
+                    cursor: pointer;
+                    border: 0px;
+                    height: 3rem;
+                    width: 100%;
+                    color: white;
+                    display: flex;
+                    gap: 0.3rem;
+                    align-items: center;
+                    justify-content: center;
+                    letter-spacing: 0.04rem;
+                }
+                & .non_empty{
+                    background-color: #222222;
+                }
+                & .empty{
+                    background-color: #5c5c5c;
+                    cursor: not-allowed;
+                    pointer-events: all !important;
+                }
+
+             }
+             & .accept{
+                font-size: 0.8rem;
+                padding-bottom: 0.3rem;
+                padding-top: 1rem;
+             }
+             .text{
+                font-size: 0.65rem;
+                font-weight: 500;
+                line-height: 1rem;
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 0.5rem;
+                & p{
+                    padding-top: 1.5rem;
+                    padding-bottom: 1rem;
+                 }
+             }
+             & p{
+                color: rgb(108, 108, 108);
+                font-size: 0.65rem;
+             }
+             & .order_Delivery{
+                display: flex;
+                flex-direction: column;
+                gap: 0.7rem;
+                font-size: 0.9rem;
+                & .order{
+                    display: flex;
+                    justify-content: space-between;
+                }
+             }
+        }
+        }
+    }
+    & .set_footer_bar{
+        display: flex;
+        gap: 0.5rem;
+        height: 3rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.8rem;
+        color: #8b8b8b;;
+        & .Icon{
+            height: 0.9rem;
+            color: #a3a3a3;
+            font-weight: 300;
+        }
+    }
+}

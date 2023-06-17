@@ -1,13 +1,16 @@
 .sides{
-    margin-top: 5rem;
     font-size: 3rem;
     font-weight: 500;
     padding: 0rem 7rem;
     text-align: center;
+    padding-top: 4rem;
+    font-weight: 600;
 }
+
 .sd_main{
-    margin-top: 2rem;
-    height: 40rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    height: 80vh;
     display: flex;
     justify-content: space-around;
     .side{

@@ -1,3 +1,30 @@
+.new_main_poster{
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  & .new_main_poster_img{
+    height: 100%;
+    width: 100%;
+    background-image: url(../images/newposter.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: contrast(100%) brightness(80%);
+    position: absolute;
+  }
+  & .text{
+    white-space: nowrap;
+    position: absolute;
+    font-size: 7rem;
+    font-weight: 800 !important;
+    color: white;
+    font-weight: 500;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-shadow: 2px 7px 5px rgba(0, 0, 0, 0.3), 0px -4px 10px rgba(255, 255, 255, 0.3);
+  }
+}
 .new_main {
     position: relative;
   padding: 7rem 0px;

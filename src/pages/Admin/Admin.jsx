@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import './admin.scss'
+import { AiOutlineCloudUpload } from "react-icons/ai";
 export default function Admin(){
     const [info,setinfo] = useState({
         name: "",
@@ -42,6 +43,7 @@ export default function Admin(){
             formData.append('filefield', file[i]);
           }
         try {
+           console.log(formData);
           const response = await axios.post("http://localhost:4000/api/server/admin/products", formData);
           console.log(response.data); // Use response.data to access the response data
         } catch (err) {
@@ -52,18 +54,20 @@ export default function Admin(){
 useEffect(()=>{
  async function getCAtLInks(){
     try{
-      const response = await axios.get("http://localhost:4000/api/server/admin/link")
+      const response = await axios.get(`http://localhost:4000/api/server/admin/link?gender=${info.gender}`)
       setcategorylink(response.data.links);
 
     }catch(err){
       console.log(err);
     }}
     getCAtLInks();
-},[])
+},[info.gender])
 
 
     return (<>
     <div className="main_products">
+      <div className="admin_product_wrapper">
+        <div className="wrapper_one">
         Add a product here
         <br />
         <form encType="multipart/form-data" onSubmit={addProduct} >
@@ -94,7 +98,7 @@ useEffect(()=>{
                   </select>
 
                   
-
+                  <br />
             <select onChange={e => onchangeinput(e)} name="headlink" id="headlink">
               <option value="">Please select the headerlink</option>
               {categorylink && categorylink.map((item, index) => {
@@ -105,7 +109,7 @@ useEffect(()=>{
                 ) : null;
               })}
             </select>
-
+            <br />
             <select onChange={e => onchangeinput(e)} name="subtag" id="subtag">
                 {categorylink && categorylink.map((item) => {
                   if (info.headlink === item.headlinks && item.headlinks) {
@@ -149,32 +153,21 @@ useEffect(()=>{
         <input type="text" name="count" id="count" onChange={e=>onchangeinput(e)}  value={info.count}/>
         <br />
         <input type="submit" value="add product" />
-        <input type="file" name="filefield" multiple onChange={handleFileInputChange} />
-        </form>
-        <br /><br /><br /><br />
-        {info.name}
-        <br />
-        {info.price}
-        <br />
-        {info.gender}
-        <br />
-        {info.headlink}
-        <br />
-        {info.category}
-        <br />
-        {info.color}
-        <br />
-        {info.colorCode}
-        <br />
-        {info.description}
-        <br />
-        {info.fit}
-        <br />
-        {info.composition}
-        <br />
-        {info.productlength}
-        <br />
-        {info.count}
+        <div className="upload_button">
+     
+          <input type="file" name="filefield" id="filefield" multiple onChange={handleFileInputChange} />
+          <label htmlFor="filefield">
+          <AiOutlineCloudUpload className="icon"  />Choose File To upload</label>
+          <div className="num_of_files">No file is choose</div>
+          <ul id="file-list"></ul>
         </div>
+      
+        </form>
+
+        </div>
+        <div className="wrapper_two">
+        </div>
+        </div>
+       </div>
     </>)
 }

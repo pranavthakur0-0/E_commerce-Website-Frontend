@@ -18,6 +18,9 @@ import UniversalPage from './pages/Universal/Universalpage';
 import Product from './pages/Product/Product';
 import Cart  from './pages/Cart/Cart.jsx'
 import Search from './pages/Search/Search';
+import DashBoard from './pages/DashBoard/DashBoard';
+import Checkout from './pages/Checkout/Checkout.jsx'
+import OrderConfirmed from "./pages/OrderConfirmed/OrderConfirmed.jsx"
 
 function App() {
   const [loggedIn, setloggedIn] = useState(false);
@@ -174,6 +177,9 @@ function App() {
               <Route exact path='/product/:productId' element={<Product />}></Route>
               <Route exact path='/in_cart' element={<Cart />}></Route>
               <Route exact path='/index/search' element={<Search />}></Route>
+              <Route exact path='/dashboard' element={<DashBoard/>}></Route>
+              <Route exact path='/checkout' element={<Checkout/>}></Route>
+              <Route exact path='/orderconfirmed' element={<OrderConfirmed/>}></Route>
           </Routes>
         </Usercontext.Provider>
     </>

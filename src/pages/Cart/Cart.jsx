@@ -6,12 +6,14 @@ import { Usercontext } from '../../context/authlogin'
 import axios from 'axios'
 import { useCookies } from "react-cookie";
 import { HiOutlineChevronDown } from "react-icons/hi2";
+import { useNavigate } from 'react-router-dom'
 
 export default function Cart(){
-    const {navHeight, cartdata, setcartdata, cookie, cookiehead}= useContext(Usercontext);
+    const {loggedIn,navHeight, cartdata, setcartdata, cookie, cookiehead}= useContext(Usercontext);
     const [cookies] = useCookies(['Wedesgin_loggedIn_permanent']);
     const [isloading, setloading] = useState(false);
     const [totalAmt, setotalAmt] = useState(0);
+    const navigate = useNavigate();
 
     useEffect(()=>{
         if(cartdata && cartdata.length>0){
@@ -79,7 +81,16 @@ export default function Cart(){
                     </div>
                     <div className="total">Total <div>Rs. {(totalAmt === 0 || totalAmt > 500) ? totalAmt : totalAmt+50}</div></div>
                     <div className="checkOut">
-                    <button>Continue to Checkout</button>
+                    <button className={cartdata && cartdata.length > 0 ? "non_empty" : "empty"} disabled={!(cartdata && cartdata.length > 0)}
+ 
+                    onClick={(e) =>
+                       { if(loggedIn){
+                        navigate('/checkout');
+                        }else{
+                            navigate('/login');
+                        }
+                     }}>  Continue to Checkout</button>
+
                     </div>
                     <div className="accept">
                     We accept 

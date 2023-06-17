@@ -8,7 +8,7 @@ import axios from "axios";
 import {MdOutlineKeyboardArrowDown } from "react-icons/md";
 
 export default function Product(){
-    const {selected, navHeight, setselected, fav, setfav,setgetbagcount,cookie, cookiehead} = useContext(Usercontext);
+    const {selected, navHeight, setselected, fav, setfav, setgetbagcount,cookie, cookiehead} = useContext(Usercontext);
     const navigate = useNavigate();
     const {productId} = useParams()
     const [size,setsize] = useState();

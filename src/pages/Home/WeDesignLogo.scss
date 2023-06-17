@@ -1,0 +1,20 @@
+.WeDesignLogo_main{
+    height: fit-content;
+    width: 100%;
+    overflow: hidden;
+    padding: 2rem 0rem;
+    font-size: 7rem;
+    font-weight: 900;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-spacing: 0.02rem;
+    letter-spacing: -0.3rem;
+    & span{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        padding-left: 1rem;
+    }
+}

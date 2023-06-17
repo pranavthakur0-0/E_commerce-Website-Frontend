@@ -71,15 +71,15 @@ function handleChange(e){
 
 
 const callApi = async(event)=>{
-    console.log("hello");
     event.preventDefault();
     console.log(info);
      const response = await axios.post("http://localhost:4000/api/server/profile", {info},{
      headers: {
        'X-CSRF-Token': cookies.Wedesgin_loggedIn_permanent // Use the cookie name as the key to access its defaultValue
      }});
-
+     console.log(response);
 }
+
 
 
 
@@ -96,14 +96,21 @@ const callApi = async(event)=>{
                      <div className="heading">Email</div>
                      {User && <p>{User.email}</p>}
                      <div className="heading">First name</div>
+                     {User && <p>{User.firstname}</p>}
                      <div className="heading">Last name</div>
+                     {User && <p>{User.lastname}</p>}
                      <div className="heading">Date of birth</div>
                      {User && <p>{formatteddate(User.dateOfBirth)}</p>}
                      <div className="heading">Phone number</div>
+                     {User && <p>{User.phonenumber}</p>}
                      <div className="heading">Gender</div>
+                     {User && <p>{User.gender}</p>}
                      <div className="heading">Market</div>
+                     {User && <p>{User.market}</p>}
                      <div className="heading">Postcode</div>
+                     {User && <p>{User.postal}</p>}
                      <div className="heading">Staff card</div>
+                     {User && <p>{User.staff}</p>}
                  </div>
              </div>
              <div className="sub_settings">

@@ -370,7 +370,7 @@ export default function Navbar()
           const headers = { [cookiehead]: cookie };
           if(headers && cookie && cookiehead){
               try {
-                let api = await axios.get("http://localhost:4000/api/server/bag_item",{headers});
+                let api = await axios.get(`${process.env.REACT_APP_SERVER_URL}/bag_item`,{headers});
                 if (api) {
                   setbagdata(api)
                 }
