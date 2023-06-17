@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import "./Order.scss"
 import OnlineOrder from "./OnlineOrder.jsx"
-import Receipts from "./Receipts.jsx"
+//import Receipts from "./Receipts.jsx"
 import axios from "axios"
 import { Usercontext } from "../../context/authlogin"
 export default function Offers(){
