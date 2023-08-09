@@ -43,7 +43,6 @@ export default function Admin(){
             formData.append('filefield', file[i]);
           }
         try {
-           console.log(formData);
           const response = await axios.post("http://localhost:4000/api/server/admin/products", formData);
           console.log(response.data); // Use response.data to access the response data
         } catch (err) {
